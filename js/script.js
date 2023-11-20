@@ -54,11 +54,28 @@ const personalMovieDB = {
             console.log(personalMovieDB);
         }
     },
+    toggleVisibleMyDB: function () {
+        if (personalMovieDB.privat) {
+            personalMovieDB.privat = false;
+        }else {
+            personalMovieDB.privat = true;
+        }
+    },
     writeYourGenres: function () {
         for (let i =1; i < 4; i++) {
+            let genre = prompt (`Ваш любимый жанр под номером ${i}`);
+
+            if (genre === '' || genre === null) {
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
+            i--;
+            } else {
              
-            personalMovieDB.genres[i-1] = prompt (`Ваш любимый жанр под номером ${i}`); // Если не использовать индекс - 1 в базу данных элемент под индексом 0 запишется как пустой объект
+            personalMovieDB.genres[i-1] = genre;
+            } // Если не использовать индекс - 1 в базу данных элемент под индексом 0 запишется как пустой объект
         }
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Любимый жанр ${i + 1} - это ${item}`);
+        })
     }
 };
 
